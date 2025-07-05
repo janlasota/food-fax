@@ -1,7 +1,17 @@
+enum Category {
+  All = "all",
+  Protein = "protein",
+  Fruit = "fruit",
+  Vegetable = "vegetable",
+  Grain = "grain",
+  Dairy = "dairy",
+  Nuts = "nuts",
+}
+
 interface Food {
   id: string;
   name: string;
-  category: string;
+  category: Category;
   image?: string;
   calories: number;
   protein: number;
@@ -15,4 +25,4 @@ interface Food {
   // sodium: number;
 }
 
-export type { Food };
+export { Category, type Food };

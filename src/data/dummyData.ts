@@ -1,4 +1,4 @@
-import type { Food } from "../types";
+import { Category, type Food } from "../types";
 
 // Dummy data pulled from https://www.nutritionix.com/
 // Amount per serving. All numbers are in grams.
@@ -6,7 +6,7 @@ export const dummyData: Food[] = [
   {
     id: "1",
     name: "Chicken Breast",
-    category: "Protein",
+    category: Category.Protein,
     image: "🍗",
     calories: 198,
     protein: 37,
@@ -17,7 +17,7 @@ export const dummyData: Food[] = [
   {
     id: "2",
     name: "Apple",
-    category: "Fruit",
+    category: Category.Fruit,
     image: "🍎",
     calories: 95,
     protein: 0.5,
@@ -29,7 +29,7 @@ export const dummyData: Food[] = [
   {
     id: "3",
     name: "Broccoli",
-    category: "Vegetable",
+    category: Category.Vegetable,
     image: "🥦",
     calories: 3.5,
     protein: 0.2,
