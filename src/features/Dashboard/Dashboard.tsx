@@ -57,30 +57,29 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col p-4">
       {/* Header */}
-      <div className="text-3xl font-bold mb-4">Food Fax</div>
-      <div className="flex gap-4 mb-4 flex-1">
+      <h1 className="text-3xl font-bold mb-4">Food Fax</h1>
+      <div className="flex gap-4 mb-4">
         {/* Left Panel */}
         <div className="w-1/2 bg-white border border-gray-300 rounded-lg p-6">
-          <h3 className="text-xl font-semibold mb-4">Instructions</h3>
+          <h2 className="text-xl font-semibold mb-4">Instructions</h2>
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-900 mb-2">Categories</h4>
+              <h3 className="font-semibold text-blue-900 mb-2">Categories</h3>
               <p className="text-sm text-blue-700">
                 Filter the foods by selecting checkboxes or find a food using
                 the combobox.
               </p>
             </div>
             <div className="bg-green-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-green-900 mb-2">Comparison</h4>
+              <h3 className="font-semibold text-green-900 mb-2">Comparison</h3>
               <p className="text-sm text-green-700">
                 Select multiple foods to compare their nutritional values.
               </p>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-purple-900 mb-2">Analysis</h4>
+              <h3 className="font-semibold text-purple-900 mb-2">Analysis</h3>
               <p className="text-sm text-purple-700">
-                View charts and breakdowns in the bottom panel once you select a
-                food.
+                View breakdowns in the bottom panel once you select a food.
               </p>
             </div>
           </div>
@@ -88,7 +87,7 @@ const Dashboard = () => {
         {/* Right Panel */}
         <div className="w-1/2 bg-white border border-gray-300 rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-semibold">Food Details</h3>
+            <h2 className="text-xl font-semibold">Food Details</h2>
             <Combobox
               options={dummyData.map((food) => ({
                 value: food.id,
@@ -104,7 +103,7 @@ const Dashboard = () => {
               }}
               checkboxClassName="cursor-pointer data-[state=checked]:bg-blue-600 border data-[state=checked]:border-blue-600 [&_[data-slot='checkbox-indicator']_svg]:!text-white"
               multiple
-              placeholder="Select a food"
+              placeholder="Search all food data"
             />
           </div>
           <div className="flex">
@@ -122,7 +121,7 @@ const Dashboard = () => {
                       className="cursor-pointer data-[state=checked]:bg-blue-600 border data-[state=checked]:border-blue-600"
                       checked={selectedCategories.includes(category.key)}
                     />
-                    <span className="text-sm">{category.label}</span>
+                    <span className="text-sm text-black">{category.label}</span>
                   </div>
                 ))}
               </div>
@@ -141,7 +140,7 @@ const Dashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center h-full text-gray-500">
+                  <div className="flex flex-col items-center justify-center">
                     <div className="text-8xl mb-2">🍽️</div>
                     <p className="text-lg text-black">
                       Check some boxes to see foods and their details!
@@ -155,28 +154,24 @@ const Dashboard = () => {
       </div>
       {/* Bottom Panel */}
       <div className="h-1/2 bg-white border border-gray-300 rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">Chart Breakdown</h3>
+        <h2 className="text-xl font-semibold mb-4">Chart Breakdown</h2>
         {selectedFoods.length > 0 ? (
-          <div className="flex items-center justify-center h-full text-gray-500">
-            <div className="text-center">
-              <div className="text-6xl mb-4">📊</div>
-              <p className="text-lg">
-                Chart component will be implemented here
-              </p>
-              <p className="text-sm">
-                Showing data for:{" "}
-                {selectedFoods.map((food) => food.name).join(", ")}
-              </p>
-            </div>
+          <div className="flex flex-col items-center justify-center">
+            <div className="text-8xl mb-4">📊</div>
+            <p className="text-lg text-black">
+              Chart component will be implemented here
+            </p>
+            <p className="text-sm text-black">
+              Showing data for:{" "}
+              {selectedFoods.map((food) => food.name).join(", ")}
+            </p>
           </div>
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-500">
-            <div className="text-center">
-              <div className="text-6xl mb-4">📈</div>
-              <p className="text-lg">
-                Select a food to view its chart breakdown
-              </p>
-            </div>
+          <div className="flex flex-col items-center justify-center">
+            <div className="text-8xl mb-4">📈</div>
+            <p className="text-lg text-black">
+              Select a food to view its chart breakdown
+            </p>
           </div>
         )}
       </div>
