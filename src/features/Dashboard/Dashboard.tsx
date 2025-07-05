@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 
-import FoodCard from "../FoodCard";
 import { Checkbox } from "../../components/ui/checkbox";
 import { Combobox } from "../../components/ui/combobox";
 import { dummyData } from "../../data/dummyData";
 import { Category, type Food } from "../../types";
+import FoodCard from "./components/FoodCard";
 
 const categories = [
   // TODO: Support all option

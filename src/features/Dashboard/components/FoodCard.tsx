@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-import type { Food } from "../types";
+import type { Food } from "../../../types";
 
 const FoodCard = ({
   food,

@@ -80,7 +80,7 @@ function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("justify-between", {
+          className={cn("justify-between cursor-pointer", {
             "w-[200px]": !width,
           })}
           style={{ width: `${width}px` }}
@@ -104,7 +104,7 @@ function Combobox({
                 <CommandItem
                   className="cursor-pointer"
                   key={option.value}
-                  value={option.value}
+                  value={option.label}
                   onSelect={() => handleSelect(option.value)}
                 >
                   {multiple ? (
