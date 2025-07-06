@@ -8,6 +8,11 @@ enum Category {
   Nuts = "nuts",
 }
 
+enum ChartType {
+  Pie = "pie",
+  Bar = "bar",
+}
+
 interface Food {
   id: string;
   name: string;
@@ -25,4 +30,4 @@ interface Food {
   // sodium: number;
 }
 
-export { Category, type Food };
+export { Category, ChartType, type Food };
