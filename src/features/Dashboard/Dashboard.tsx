@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 import { CustomBarChart } from "../../components/ui/charts/bar-chart";
 import { CustomRadialChart } from "../../components/ui/charts/radial-chart";
 import { CustomPieChart } from "../../components/ui/charts/pie-chart";
@@ -188,7 +190,11 @@ const Dashboard = () => {
       </div>
       {/* Bottom Panel */}
       <div className="h-1/2 bg-white border border-gray-300 rounded-lg p-6">
-        <div className="flex justify-between items-center mb-4">
+        <div
+          className={cn("flex justify-between items-center", {
+            "mb-4": chartType !== ChartType.Radial,
+          })}
+        >
           <h2 className="text-xl font-semibold">Chart Breakdown</h2>
           {selectedFoods.length > 0 && (
             <Tabs defaultValue={ChartType.Pie} value={chartType}>
