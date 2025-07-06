@@ -15,8 +15,9 @@ const FoodCard = ({
     <div
       key={food.id}
       className={cn(
-        "p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50",
-        isSelected && "bg-blue-50"
+        "p-3 border border-gray-200 rounded-lg cursor-pointer",
+        isSelected && "bg-blue-50",
+        !isSelected && "hover:bg-gray-50"
       )}
       onClick={() => onSelect(food.id)}
     >
@@ -25,10 +26,9 @@ const FoodCard = ({
         <div className="font-medium">{food.name}</div>
       </div>
       <div className="text-sm text-gray-600 flex flex-col gap-0.5">
-        <div>Calories: {food.calories} kcal</div>
-        <div>Protein: {food.protein}g</div>
-        <div>Carbs: {food.carbs}g</div>
-        <div>Fat: {food.fat}g</div>
+        <div>
+          {food.calories} {food.calories > 1 ? "calories" : "calorie"}
+        </div>
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ interface ComboboxProps {
   placeholder: string;
   checkboxClassName?: string;
   multiple?: boolean;
+  multipleItemsDisplayText?: string;
   width?: string | number;
 }
 
@@ -36,6 +37,7 @@ function Combobox({
   placeholder,
   checkboxClassName,
   multiple = false,
+  multipleItemsDisplayText,
   width,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
@@ -50,7 +52,9 @@ function Combobox({
           placeholder
         );
       }
-      return `${selectedValues.length} items selected`;
+      return `${selectedValues.length} ${
+        multipleItemsDisplayText ? multipleItemsDisplayText : "items"
+      } selected`;
     } else {
       const singleValue = value as string;
       return singleValue
