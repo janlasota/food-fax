@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 
 import { CustomBarChart } from "../../components/ui/charts/bar-chart";
+import { CustomRadialChart } from "../../components/ui/charts/radial-chart";
 import { CustomPieChart } from "../../components/ui/charts/pie-chart";
 import { Checkbox } from "../../components/ui/checkbox";
 import { Combobox } from "../../components/ui/combobox";
@@ -20,6 +21,18 @@ const categories = [
   { key: Category.Nuts, label: "Nuts" },
 ];
 
+const chartConfig = {
+  protein: {
+    label: "Protein",
+  },
+  carbs: {
+    label: "Carbs",
+  },
+  fat: {
+    label: "Fat",
+  },
+};
+
 const Dashboard = () => {
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const [selectedFoods, setSelectedFoods] = useState<Food[]>([]);
@@ -33,6 +46,22 @@ const Dashboard = () => {
       return selectedCategories.includes(food.category);
     });
   }, [selectedCategories]);
+
+  const radialChartData = useMemo(() => {
+    // Calculate total nutritional facts from all selected foods
+    const totalProtein = selectedFoods.reduce(
+      (sum, food) => sum + food.protein,
+      0
+    );
+    const totalCarbs = selectedFoods.reduce((sum, food) => sum + food.carbs, 0);
+    const totalFat = selectedFoods.reduce((sum, food) => sum + food.fat, 0);
+
+    return [
+      { key: "protein", value: totalProtein, fill: "var(--chart-1)" },
+      { key: "carbs", value: totalCarbs, fill: "var(--chart-2)" },
+      { key: "fat", value: totalFat, fill: "var(--chart-3)" },
+    ];
+  }, [selectedFoods]);
 
   const handleSelectFood = (id: string) => {
     const food = dummyData.find((food) => food.id === id);
@@ -178,6 +207,13 @@ const Dashboard = () => {
                 >
                   Bar
                 </TabsTrigger>
+                <TabsTrigger
+                  value={ChartType.Radial}
+                  className="cursor-pointer"
+                  onClick={() => setChartType(ChartType.Radial)}
+                >
+                  Radial
+                </TabsTrigger>
               </TabsList>
             </Tabs>
           )}
@@ -199,21 +235,10 @@ const Dashboard = () => {
                   },
                   { key: "fat", value: food.fat, fill: "var(--chart-3)" },
                 ];
-                const chartConfig = {
-                  protein: {
-                    label: "Protein",
-                  },
-                  carbs: {
-                    label: "Carbs",
-                  },
-                  fat: {
-                    label: "Fat",
-                  },
-                };
 
                 return (
                   <div key={food.id}>
-                    {chartType === ChartType.Pie ? (
+                    {chartType === ChartType.Pie && (
                       <CustomPieChart
                         key={food.id}
                         item={{
@@ -224,7 +249,8 @@ const Dashboard = () => {
                         }}
                         valueFormatter={(value) => `${value}g`}
                       />
-                    ) : (
+                    )}
+                    {chartType === ChartType.Bar && (
                       <CustomBarChart
                         key={food.id}
                         item={{
@@ -240,6 +266,16 @@ const Dashboard = () => {
                 );
               })}
             </div>
+            {chartType === ChartType.Radial && (
+              <div className="flex items-center justify-center">
+                <CustomRadialChart
+                  title="Combined Nutritional Facts"
+                  description="Select foods to curate your own meal!"
+                  chartData={radialChartData}
+                  chartConfig={chartConfig}
+                />
+              </div>
+            )}
             <div className="flex justify-center">
               <Legend
                 items={[

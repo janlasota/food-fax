@@ -11,6 +11,7 @@ enum Category {
 enum ChartType {
   Pie = "pie",
   Bar = "bar",
+  Radial = "radial",
 }
 
 interface Food {
