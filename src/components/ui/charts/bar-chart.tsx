@@ -33,9 +33,7 @@ export function CustomBarChart({
             tickLine={false}
             tickMargin={10}
             axisLine={false}
-            tickFormatter={(value) =>
-              value.charAt(0).toUpperCase() + value.slice(1)
-            }
+            hide
           />
           <ChartTooltip
             cursor={false}

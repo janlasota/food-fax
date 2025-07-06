@@ -240,17 +240,15 @@ const Dashboard = () => {
                 );
               })}
             </div>
-            {chartType === ChartType.Pie && (
-              <div className="flex justify-center">
-                <Legend
-                  items={[
-                    { label: "Protein", color: "var(--chart-1)" },
-                    { label: "Carbs", color: "var(--chart-2)" },
-                    { label: "Fat", color: "var(--chart-3)" },
-                  ]}
-                />
-              </div>
-            )}
+            <div className="flex justify-center">
+              <Legend
+                items={[
+                  { label: "Protein", color: "var(--chart-1)" },
+                  { label: "Carbs", color: "var(--chart-2)" },
+                  { label: "Fat", color: "var(--chart-3)" },
+                ]}
+              />
+            </div>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center">
