@@ -230,7 +230,9 @@ const Dashboard = () => {
               </div>
               <div className="w-5/6 flex flex-col">
                 <div className="max-h-64 overflow-y-auto">
-                  {foodDetails.length && selectedCategories.length > 0 ? (
+                  {!isFetching &&
+                  foodDetails.length &&
+                  selectedCategories.length > 0 ? (
                     <div className="space-y-2">
                       {foodDetails.map((food) => (
                         <FoodCard
@@ -242,9 +244,9 @@ const Dashboard = () => {
                       ))}
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center h-[225px]">
                       {isFetching ? (
-                        <Spinner />
+                        <Spinner className="mb-2" />
                       ) : (
                         <div className="text-8xl mb-2">🍽️</div>
                       )}
