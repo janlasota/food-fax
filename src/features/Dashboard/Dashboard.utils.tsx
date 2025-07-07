@@ -25,3 +25,13 @@ export const transformSpoonacularIngredient = (
     servingSize: Math.floor(Math.random() * 101),
   };
 };
+
+export const getFoodDetailsText = (error: boolean, fetching: boolean) => {
+  if (error) {
+    return "There was an error fetching Spoonacular data. Please try again.";
+  }
+  if (fetching) {
+    return "Fetching Spoonacular data...";
+  }
+  return "Check some boxes to see foods and their details!";
+};
