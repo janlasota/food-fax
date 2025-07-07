@@ -30,5 +30,10 @@ interface Food {
   // sugar: number;
   // sodium: number;
 }
+interface Ingredient {
+  id: number;
+  name: string;
+  image: string;
+}
 
-export { Category, ChartType, type Food };
+export { Category, ChartType, type Food, type Ingredient };
