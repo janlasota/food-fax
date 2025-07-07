@@ -122,6 +122,8 @@ const Dashboard = () => {
   const handleToggleSpoonacular = () => {
     if (!useSpoonacular) {
       setUseSpoonacular(true);
+      setSelectedFoods([]);
+      setSelectedCategories([]);
     } else {
       setSpoonacularModalOpen(true);
     }
@@ -130,6 +132,8 @@ const Dashboard = () => {
   const handleDisableSpoonacular = () => {
     setUseSpoonacular(false);
     setSpoonacularModalOpen(false);
+    setSelectedFoods([]);
+    setSelectedCategories([]);
   };
 
   return (
