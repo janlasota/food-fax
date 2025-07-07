@@ -374,7 +374,7 @@ const Dashboard = () => {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center h-[325px]">
               <div className="text-8xl mb-4">📈</div>
               <p className="text-lg text-black">
                 Select a food to view its chart breakdown!
