@@ -22,7 +22,15 @@ const FoodCard = ({
       onClick={() => onSelect(food.id)}
     >
       <div className="flex items-center gap-2 mb-2">
-        <div className="text-lg">{food.image}</div>
+        {food.image?.includes("img.spoonacular.com") ? (
+          <img
+            src={food.image}
+            alt={food.name}
+            className="w-6 h-6 rounded-full"
+          />
+        ) : (
+          <div className="text-lg">{food.image ?? "✖️"}</div>
+        )}
         <div className="font-medium">{food.name}</div>
       </div>
       <div className="text-sm text-gray-600 flex flex-col gap-0.5">

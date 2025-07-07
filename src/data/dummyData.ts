@@ -5,7 +5,7 @@ import { Category, type Food } from "../types";
 export const dummyData: Food[] = [
   {
     id: "1",
-    name: "Chicken Breast",
+    name: "Chicken breast",
     category: Category.Protein,
     image: "🍗",
     calories: 198,

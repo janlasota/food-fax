@@ -28,6 +28,7 @@ interface ComboboxProps {
   multiple?: boolean;
   multipleItemsDisplayText?: string;
   width?: string | number;
+  useImageUrl?: boolean;
 }
 
 function Combobox({
@@ -39,8 +40,28 @@ function Combobox({
   multiple = false,
   multipleItemsDisplayText,
   width,
+  useImageUrl = false,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
+
+  const getOptionImage = (option: {
+    value: string;
+    label: string;
+    image?: string;
+  }) => {
+    if (useImageUrl) {
+      return option.image ? (
+        <img
+          src={option.image}
+          alt={option.label}
+          className="w-6 h-6 rounded-full"
+        />
+      ) : (
+        <div className="text-lg">✖️</div>
+      );
+    }
+    return <div className="text-lg">{option.image}</div>;
+  };
 
   const getDisplayText = () => {
     if (multiple) {
@@ -126,10 +147,8 @@ function Combobox({
                       )}
                     />
                   )}
-                  <div
-                    className={option.image ? "flex items-center gap-2" : ""}
-                  >
-                    <div>{option.image}</div>
+                  <div className="flex items-center gap-2">
+                    {getOptionImage(option)}
                     <div>{option.label}</div>
                   </div>
                 </CommandItem>
