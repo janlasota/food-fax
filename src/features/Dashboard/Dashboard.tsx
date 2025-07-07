@@ -210,6 +210,7 @@ const Dashboard = () => {
                 multiple
                 multipleItemsDisplayText="foods"
                 placeholder="Search all food data"
+                noOptionsFoundText="No food found."
                 useImageUrl={useSpoonacular}
               />
             </div>

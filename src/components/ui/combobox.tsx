@@ -27,6 +27,7 @@ interface ComboboxProps {
   checkboxClassName?: string;
   multiple?: boolean;
   multipleItemsDisplayText?: string;
+  noOptionsFoundText?: string;
   width?: string | number;
   useImageUrl?: boolean;
 }
@@ -39,6 +40,7 @@ function Combobox({
   checkboxClassName,
   multiple = false,
   multipleItemsDisplayText,
+  noOptionsFoundText,
   width,
   useImageUrl = false,
 }: ComboboxProps) {
@@ -123,7 +125,9 @@ function Combobox({
         <Command>
           <CommandInput placeholder={placeholder} />
           <CommandList>
-            <CommandEmpty>No options found.</CommandEmpty>
+            <CommandEmpty>
+              {noOptionsFoundText ?? "No options found."}
+            </CommandEmpty>
             <CommandGroup>
               {options.map((option) => (
                 <CommandItem
