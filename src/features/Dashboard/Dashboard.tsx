@@ -137,7 +137,10 @@ const Dashboard = () => {
       <div className="flex flex-col p-4">
         <div className="flex justify-between items-center mb-4">
           {/* Header */}
-          <h1 className="text-3xl font-bold">Food Fax</h1>
+          <div className="flex items-center gap-2 text-3xl">
+            <div>🍜</div>
+            <h1 className="font-bold">Food Fax</h1>
+          </div>
           <Button
             variant="default"
             className={cn("flex items-center gap-2 cursor-pointer text-white", {
