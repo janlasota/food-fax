@@ -19,7 +19,10 @@ import {
 import { dummyData } from "../../data/dummyData";
 import { Category, ChartType, type Food } from "../../types";
 import { FoodCard, Legend, SpoonacularDialog } from "./components";
-import { transformSpoonacularIngredient } from "./Dashboard.utils";
+import {
+  getFoodDetailsText,
+  transformSpoonacularIngredient,
+} from "./Dashboard.utils";
 
 const categories = [
   // TODO: Support all option
@@ -53,6 +56,7 @@ const Dashboard = () => {
     useState<boolean>(false);
   const [spoonacularData, setSpoonacularData] = useState<Food[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const data = useMemo(() => {
     return useSpoonacular ? spoonacularData : dummyData;
@@ -97,15 +101,23 @@ const Dashboard = () => {
 
   const handleSelectCategory = async (key: string) => {
     if (useSpoonacular) {
+      // Clear any previous errors if the user selects a category again
+      if (error) setError(false);
       // Skip doing request if the category is already in the data
       if (!spoonacularData.some((food) => food.category === key)) {
         setIsFetching(true);
         const ingredient = await searchIngredients(key, 2);
-        const foods = ingredient.map((ingredient) =>
-          transformSpoonacularIngredient(ingredient, key)
-        );
-        setSpoonacularData((prev) => [...prev, ...foods]);
-        setIsFetching(false);
+        if (typeof ingredient === "string") {
+          setError(true);
+          setIsFetching(false);
+          return;
+        } else {
+          const foods = ingredient.map((ingredient) =>
+            transformSpoonacularIngredient(ingredient, key)
+          );
+          setSpoonacularData((prev) => [...prev, ...foods]);
+          setIsFetching(false);
+        }
       }
     }
     const category = categories.find((category) => category.key === key);
@@ -259,9 +271,7 @@ const Dashboard = () => {
                         <div className="text-8xl mb-2">🍽️</div>
                       )}
                       <p className="text-lg text-black">
-                        {isFetching
-                          ? "Fetching Spoonacular data..."
-                          : "Check some boxes to see foods and their details!"}
+                        {getFoodDetailsText(error, isFetching)}
                       </p>
                     </div>
                   )}
