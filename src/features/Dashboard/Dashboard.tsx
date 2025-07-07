@@ -138,7 +138,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="flex flex-col p-4">
+      <div className="flex flex-col p-4 h-full">
         <div className="flex justify-between items-center mb-4">
           {/* Header */}
           <div className="flex items-center gap-2 text-3xl">
