@@ -1,5 +1,6 @@
 enum Category {
-  All = "all",
+  // TODO: Add all category
+  // All = "all",
   Protein = "protein",
   Fruit = "fruit",
   Vegetable = "vegetable",

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { TestTubeDiagonalIcon } from "lucide-react";
+import { PlusIcon, TestTubeDiagonalIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { searchIngredients } from "../../services/spoonacular";
@@ -18,7 +18,12 @@ import {
 } from "../../components/ui";
 import { dummyData } from "../../data/dummyData";
 import { Category, ChartType, type Food } from "../../types";
-import { FoodCard, Legend, SpoonacularDialog } from "./components";
+import {
+  AddFoodDialog,
+  FoodCard,
+  Legend,
+  SpoonacularDialog,
+} from "./components";
 import {
   getFoodDetailsText,
   transformSpoonacularIngredient,
@@ -52,11 +57,15 @@ const Dashboard = () => {
   const [selectedFoods, setSelectedFoods] = useState<Food[]>([]);
   const [chartType, setChartType] = useState<ChartType>(ChartType.Pie);
   const [useSpoonacular, setUseSpoonacular] = useState<boolean>(false);
-  const [spoonacularModalOpen, setSpoonacularModalOpen] =
-    useState<boolean>(false);
   const [spoonacularData, setSpoonacularData] = useState<Food[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [spoonacularModalOpen, setSpoonacularModalOpen] =
+    useState<boolean>(false);
+  const [addFoodDialogOpen, setAddFoodDialogOpen] = useState<boolean>(false);
+  const [customFoods, setCustomFoods] = useState<Food[]>([]);
+
+  console.log("customFoods", customFoods);
 
   const data = useMemo(() => {
     return useSpoonacular ? spoonacularData : dummyData;
@@ -157,21 +166,32 @@ const Dashboard = () => {
             <div>🍜</div>
             <h1 className="font-bold">Food Fax</h1>
           </div>
-          <Button
-            variant="default"
-            className={cn("flex items-center gap-2 cursor-pointer text-white", {
-              "bg-green-500 hover:bg-green-600": !useSpoonacular,
-              "bg-red-500 hover:bg-red-600": useSpoonacular,
-            })}
-            onClick={handleToggleSpoonacular}
-          >
-            <TestTubeDiagonalIcon className="w-4 h-4" />
-            <div className="text-sm">
+          <div className="flex items-center gap-2">
+            <Button
+              variant="default"
+              className="flex items-center gap-2 cursor-pointer text-white"
+              onClick={() => setAddFoodDialogOpen(true)}
+            >
+              <PlusIcon className="w-4 h-4" />
+              Add food
+            </Button>
+            <Button
+              variant="default"
+              className={cn(
+                "flex items-center gap-2 cursor-pointer text-white",
+                {
+                  "bg-green-500 hover:bg-green-600": !useSpoonacular,
+                  "bg-red-500 hover:bg-red-600": useSpoonacular,
+                }
+              )}
+              onClick={handleToggleSpoonacular}
+            >
+              <TestTubeDiagonalIcon className="w-4 h-4" />
               {useSpoonacular
                 ? "Disable Spoonacular API"
                 : "Enable Spoonacular API"}
-            </div>
-          </Button>
+            </Button>
+          </div>
         </div>
         <div className="flex gap-4 mb-4">
           {/* Left Panel */}
@@ -398,6 +418,11 @@ const Dashboard = () => {
         open={spoonacularModalOpen}
         handleCancel={() => setSpoonacularModalOpen(false)}
         handleYes={handleDisableSpoonacular}
+      />
+      <AddFoodDialog
+        open={addFoodDialogOpen}
+        handleClose={() => setAddFoodDialogOpen(false)}
+        handleAdd={(food) => setCustomFoods((prev) => [...prev, food])}
       />
     </>
   );
