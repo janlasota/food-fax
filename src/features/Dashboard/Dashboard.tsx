@@ -198,11 +198,11 @@ const Dashboard = () => {
             </Button>
           </div>
         </div>
-        <div className="flex gap-4 mb-4">
+        <div className="flex flex-col lg:flex-row gap-4 mb-4">
           {/* Left Panel */}
           <Instructions />
           {/* Right Panel */}
-          <div className="w-1/2 bg-white border border-gray-300 rounded-lg p-6">
+          <div className="w-full lg:w-1/2 bg-white border border-gray-300 rounded-lg p-6">
             <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Food Details</h2>
               <Combobox
@@ -226,9 +226,9 @@ const Dashboard = () => {
                 useImageUrl={useSpoonacular}
               />
             </div>
-            <div className="flex flex-col sm:flex-row">
-              <div className="w-1/6">
-                <div className="flex flex-col gap-2">
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+              <div className="w-full lg:w-1/6">
+                <div className="flex flex-row lg:flex-col gap-3 lg:gap-2 flex-wrap">
                   {categories.map((category) => (
                     <div
                       className="flex items-center gap-2 cursor-pointer w-fit"
