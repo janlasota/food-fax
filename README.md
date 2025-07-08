@@ -12,7 +12,7 @@ Visualize the nutrients in your food
 - React Hook Form
 - Recharts
 
-## Getting Started
+## Before you Get Started
 
 This project requires Node.js version 20.10.0 or later due to Vite 7.0.0 compatibility. If you encounter the error `TypeError: crypto.hash is not a function`, make sure to upgrade your Node.js version. You can find that issue reported [here](https://github.com/vitejs/vite/issues/20287).
 
