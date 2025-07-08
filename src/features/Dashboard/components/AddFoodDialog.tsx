@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { Upload } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -52,6 +54,8 @@ const AddFoodDialog = ({
   handleClose,
   handleAdd,
 }: AddFoodDialogProps) => {
+  const [currentFileName, setCurrentFileName] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,12 +66,13 @@ const AddFoodDialog = ({
       carbs: 0,
       fat: 0,
       servingSize: 0,
-      image: "",
+      image: undefined,
     },
   });
 
   const onClose = () => {
     form.reset();
+    setCurrentFileName(null);
     handleClose();
   };
 
@@ -81,6 +86,20 @@ const AddFoodDialog = ({
     } else {
       form.trigger();
     }
+  };
+
+  const onUpload = (onChange: (url: string) => void) => {
+    const inputElement = document.createElement("input");
+    inputElement.type = "file";
+    inputElement.accept = "image/*";
+    inputElement.onchange = () => {
+      const file = inputElement.files?.[0];
+      setCurrentFileName(file?.name ?? null);
+      if (file) {
+        onChange(URL.createObjectURL(file));
+      }
+    };
+    inputElement.click();
   };
 
   return (
@@ -142,6 +161,42 @@ const AddFoodDialog = ({
                         </SelectContent>
                       </Select>
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="image"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Image</FormLabel>
+                    <FormControl>
+                      <div className="flex items-center gap-4">
+                        <Button
+                          asChild
+                          className="w-fit cursor-pointer"
+                          onClick={() => onUpload(field.onChange)}
+                        >
+                          <div className="flex items-center gap-2">
+                            <Upload className="w-4 h-4" />
+                            Upload
+                          </div>
+                        </Button>
+                        {field.value && (
+                          <div className="flex items-center gap-2">
+                            <img
+                              src={field.value}
+                              alt="Custom food image"
+                              className="w-10 h-10 rounded-full"
+                            />
+                            {currentFileName && (
+                              <div className="text-sm">{currentFileName}</div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />

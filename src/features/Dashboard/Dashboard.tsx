@@ -65,11 +65,11 @@ const Dashboard = () => {
   const [addFoodDialogOpen, setAddFoodDialogOpen] = useState<boolean>(false);
   const [customFoods, setCustomFoods] = useState<Food[]>([]);
 
-  console.log("customFoods", customFoods);
-
   const data = useMemo(() => {
-    return useSpoonacular ? spoonacularData : dummyData;
-  }, [spoonacularData, useSpoonacular]);
+    return useSpoonacular
+      ? [...spoonacularData, ...customFoods]
+      : [...dummyData, ...customFoods];
+  }, [customFoods, spoonacularData, useSpoonacular]);
 
   const foodDetails = useMemo(() => {
     if (selectedCategories.length === 0) {

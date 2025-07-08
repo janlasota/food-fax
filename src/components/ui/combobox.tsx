@@ -51,7 +51,9 @@ function Combobox({
     label: string;
     image?: string;
   }) => {
-    if (useImageUrl) {
+    const renderImage = option.image?.includes("blob:");
+
+    if (useImageUrl || renderImage) {
       return option.image ? (
         <img
           src={option.image}
@@ -62,7 +64,7 @@ function Combobox({
         <div className="text-lg">✖️</div>
       );
     }
-    return <div className="text-lg">{option.image}</div>;
+    return <div className="text-lg">{option.image ?? "✖️"}</div>;
   };
 
   const getDisplayText = () => {

@@ -11,6 +11,10 @@ const FoodCard = ({
   isSelected: boolean;
   onSelect: (id: string) => void;
 }) => {
+  const renderImage =
+    food.image?.includes("img.spoonacular.com") ||
+    food.image?.includes("blob:");
+
   return (
     <div
       key={food.id}
@@ -22,7 +26,7 @@ const FoodCard = ({
       onClick={() => onSelect(food.id)}
     >
       <div className="flex items-center gap-2 mb-2">
-        {food.image?.includes("img.spoonacular.com") ? (
+        {renderImage ? (
           <img
             src={food.image}
             alt={food.name}
