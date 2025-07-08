@@ -248,7 +248,7 @@ const Dashboard = () => {
                   ))}
                 </div>
               </div>
-              <div className="w-5/6 flex flex-col">
+              <div className="w-full flex flex-col">
                 <div className="max-h-64 overflow-y-auto">
                   {!isFetching &&
                   foodDetails.length &&
@@ -282,7 +282,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Bottom Panel */}
-        <div className="bg-white border border-gray-300 rounded-lg p-6">
+        <div className="h-full bg-white border border-gray-300 rounded-lg p-6">
           <div
             className={cn("flex justify-between items-center", {
               "mb-4": chartType !== ChartType.Radial,
