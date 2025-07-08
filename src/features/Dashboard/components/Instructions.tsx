@@ -1,6 +1,6 @@
 const Instructions = () => {
   return (
-    <div className="w-1/2 bg-white border border-gray-300 rounded-lg p-6">
+    <div className="w-full sm:w-1/2 bg-white border border-gray-300 rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Instructions</h2>
       <div className="space-y-4">
         <div className="bg-blue-50 p-4 rounded-lg">

@@ -203,7 +203,7 @@ const Dashboard = () => {
           <Instructions />
           {/* Right Panel */}
           <div className="w-1/2 bg-white border border-gray-300 rounded-lg p-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Food Details</h2>
               <Combobox
                 options={data.map((food) => ({
@@ -226,7 +226,7 @@ const Dashboard = () => {
                 useImageUrl={useSpoonacular}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row">
               <div className="w-1/6">
                 <div className="flex flex-col gap-2">
                   {categories.map((category) => (
@@ -282,7 +282,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Bottom Panel */}
-        <div className="h-1/2 bg-white border border-gray-300 rounded-lg p-6">
+        <div className="bg-white border border-gray-300 rounded-lg p-6">
           <div
             className={cn("flex justify-between items-center", {
               "mb-4": chartType !== ChartType.Radial,
