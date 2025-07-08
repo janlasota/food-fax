@@ -71,13 +71,16 @@ const AddFoodDialog = ({
     handleClose();
   };
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("values", values);
-    handleAdd({
-      ...values,
-      id: "1",
-    });
-    onClose();
+  const onSubmit = () => {
+    if (form.formState.isValid) {
+      handleAdd({
+        ...form.getValues(),
+        id: crypto.randomUUID(),
+      });
+      onClose();
+    } else {
+      form.trigger();
+    }
   };
 
   return (
@@ -100,9 +103,17 @@ const AddFoodDialog = ({
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        {...field}
+                        onChange={(e) => {
+                          // Clear error state when user types
+                          if (form.formState.errors.name) {
+                            form.clearErrors("name");
+                          }
+                          field.onChange(e.target.value);
+                        }}
+                      />
                     </FormControl>
-                    <FormDescription />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -120,7 +131,10 @@ const AddFoodDialog = ({
                         </SelectTrigger>
                         <SelectContent>
                           {Object.values(Category).map((category) => (
-                            <SelectItem value={category} className="cursor-pointer">
+                            <SelectItem
+                              value={category}
+                              className="cursor-pointer"
+                            >
                               {category.charAt(0).toUpperCase() +
                                 category.slice(1)}
                             </SelectItem>
@@ -128,8 +142,6 @@ const AddFoodDialog = ({
                         </SelectContent>
                       </Select>
                     </FormControl>
-                    <FormDescription />
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -144,8 +156,6 @@ const AddFoodDialog = ({
                     <FormControl>
                       <Input {...field} type="number" min={0} />
                     </FormControl>
-                    <FormDescription />
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -158,8 +168,6 @@ const AddFoodDialog = ({
                     <FormControl>
                       <Input {...field} type="number" min={0} />
                     </FormControl>
-                    <FormDescription />
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -172,8 +180,6 @@ const AddFoodDialog = ({
                     <FormControl>
                       <Input {...field} type="number" min={0} />
                     </FormControl>
-                    <FormDescription />
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -200,8 +206,6 @@ const AddFoodDialog = ({
                     <FormControl>
                       <Input {...field} type="number" min={0} />
                     </FormControl>
-                    <FormDescription />
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -217,7 +221,7 @@ const AddFoodDialog = ({
               <Button
                 variant="default"
                 className="cursor-pointer"
-                type="submit"
+                onClick={onSubmit}
               >
                 Create
               </Button>
