@@ -81,3 +81,4 @@ This app integrates with the [Spoonacular Food API](https://spoonacular.com/food
 
 - Wire in a database so custom foods save across sessions
 - Create another page with a table that tracks the custom foods you've created
+- Improve mobile responsive with the combobox component
