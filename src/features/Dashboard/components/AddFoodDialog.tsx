@@ -16,7 +16,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -152,6 +151,7 @@ const AddFoodDialog = ({
                           {Object.values(Category).map((category) => (
                             <SelectItem
                               value={category}
+                              key={category}
                               className="cursor-pointer"
                             >
                               {category.charAt(0).toUpperCase() +
@@ -209,7 +209,12 @@ const AddFoodDialog = ({
                   <FormItem>
                     <FormLabel>Calories</FormLabel>
                     <FormControl>
-                      <Input {...field} type="number" min={0} />
+                      <Input
+                        {...field}
+                        type="number"
+                        min={0}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -221,7 +226,12 @@ const AddFoodDialog = ({
                   <FormItem>
                     <FormLabel>Protein</FormLabel>
                     <FormControl>
-                      <Input {...field} type="number" min={0} />
+                      <Input
+                        {...field}
+                        type="number"
+                        min={0}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -233,7 +243,12 @@ const AddFoodDialog = ({
                   <FormItem>
                     <FormLabel>Carbs</FormLabel>
                     <FormControl>
-                      <Input {...field} type="number" min={0} />
+                      <Input
+                        {...field}
+                        type="number"
+                        min={0}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -245,10 +260,13 @@ const AddFoodDialog = ({
                   <FormItem>
                     <FormLabel>Fat</FormLabel>
                     <FormControl>
-                      <Input {...field} type="number" min={0} />
+                      <Input
+                        {...field}
+                        type="number"
+                        min={0}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
                     </FormControl>
-                    <FormDescription />
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -259,7 +277,12 @@ const AddFoodDialog = ({
                   <FormItem>
                     <FormLabel>Serving size</FormLabel>
                     <FormControl>
-                      <Input {...field} type="number" min={0} />
+                      <Input
+                        {...field}
+                        type="number"
+                        min={0}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
