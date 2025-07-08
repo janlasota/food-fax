@@ -112,7 +112,7 @@ function Combobox({
           className={cn("justify-between cursor-pointer", {
             "w-[200px]": !width,
           })}
-          style={{ width: `${width}px` }}
+          style={{ width }}
         >
           {getDisplayText()}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -122,7 +122,7 @@ function Combobox({
         className={cn("p-0", {
           "w-[200px]": !width,
         })}
-        style={{ width: `${width}px` }}
+        style={{ width }}
       >
         <Command>
           <CommandInput placeholder={placeholder} />
