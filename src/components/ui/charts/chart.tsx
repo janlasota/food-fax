@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
 
@@ -104,11 +105,13 @@ const ChartTooltip = RechartsPrimitive.Tooltip;
 
 function ChartTooltipContent({
   active,
+  // @ts-expect-error - payload is not defined in the type
   payload,
   className,
   indicator = "dot",
   hideLabel = false,
   hideIndicator = false,
+  // @ts-expect-error - label is not defined in the type
   label,
   labelFormatter,
   labelClassName,
@@ -180,7 +183,7 @@ function ChartTooltipContent({
     >
       {!nestLabel ? tooltipLabel : null}
       <div className="grid gap-1.5">
-        {payload.map((item, index) => {
+        {payload.map((item: any, index: number) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
           const indicatorColor = color || item.payload.fill || item.color;
@@ -260,12 +263,14 @@ function ChartLegendContent({
   verticalAlign = "bottom",
   nameKey,
 }: React.ComponentProps<"div"> &
+  // @ts-expect-error - payload and verticalAlign are not defined in the type
   Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
     hideIcon?: boolean;
     nameKey?: string;
   }) {
   const { config } = useChart();
 
+  // @ts-expect-error - payload is not defined in the type
   if (!payload?.length) {
     return null;
   }
@@ -278,6 +283,7 @@ function ChartLegendContent({
         className
       )}
     >
+      {/* @ts-expect-error - payload is not defined in the type */}
       {payload.map((item) => {
         const key = `${nameKey || item.dataKey || "value"}`;
         const itemConfig = getPayloadConfigFromPayload(config, item, key);
