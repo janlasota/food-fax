@@ -51,6 +51,29 @@ node --version
 
 4. Open your browser and navigate to the URL displayed in the terminal, which should be `http://localhost:5173`.
 
+## Setting up Spoonacular API
+
+This app integrates with the [Spoonacular Food API](https://spoonacular.com/food-api) to pull some food data. You'll need to set up an account to get an API key to use (I can also provide you with my API key for testing).
+
+### 1. Create a Spoonacular Account
+- Visit [https://spoonacular.com/food-api](https://spoonacular.com/food-api)
+- Sign up for a free account
+- Navigate to **My Console > Profile & API Key**
+- Copy your `API Key`
+
+### 2. Configure your Environment
+- Add your API key to the `.envrc` file:
+  ```bash
+  export VITE_SPOONACULAR_API_KEY=<your_api_key_here>
+  ```
+- Run the following command to allow the environment variables:
+  ```bash
+  direnv allow .
+  ```
+
+### 3. Enable API Integration
+- Once your API key is set, you can enable the Spoonacular API via the top right button in the app
+
 ## Future Plans
 
 - Wire in a database so custom foods save across sessions
