@@ -26,6 +26,7 @@ interface Food {
   fat: number;
   servingSize: number;
   diameter?: number;
+  isCustomFood?: boolean;
   // TODO: Add fiber, sugar, and sodium
   // fiber: number;
   // sugar: number;

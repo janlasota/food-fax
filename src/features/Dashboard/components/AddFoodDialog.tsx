@@ -80,6 +80,7 @@ const AddFoodDialog = ({
       handleAdd({
         ...form.getValues(),
         id: crypto.randomUUID(),
+        isCustomFood: true,
       });
       onClose();
     } else {
