@@ -1,9 +1,8 @@
-import "./App.css";
 import Dashboard from "./features/Dashboard/Dashboard";
 
 function App() {
   return (
-    <div className="h-screen bg-gray-100">
+    <div className="h-dvh w-dvw">
       <Dashboard />
     </div>
   );
