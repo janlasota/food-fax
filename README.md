@@ -72,6 +72,7 @@ This app integrates with the [Spoonacular Food API](https://spoonacular.com/food
   ```bash
   direnv allow .
   ```
+- Make sure to rerun the app so your variable changes go through
 
 ### 3. Enable API Integration
 
