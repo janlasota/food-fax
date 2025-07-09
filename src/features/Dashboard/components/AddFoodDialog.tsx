@@ -111,7 +111,7 @@ const AddFoodDialog = ({
               <DialogTitle>Add a custom food</DialogTitle>
               <DialogDescription>
                 Fill out the form below to create your own food to view in Food
-                Details.
+                Details. All nutrients should be recorded in grams.
               </DialogDescription>
             </DialogHeader>
             <div className="flex flex-col gap-3">
@@ -276,7 +276,7 @@ const AddFoodDialog = ({
                 name="servingSize"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Serving size</FormLabel>
+                    <FormLabel>Serving sz.</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
