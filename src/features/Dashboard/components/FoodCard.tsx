@@ -36,7 +36,7 @@ const FoodCard = ({
       tabIndex={0}
     >
       <div className="flex justify-between">
-        <div className="flex items-center gap-2 mb-2 mt-4">
+        <div className="flex items-center gap-2 mb-4">
           {renderImage ? (
             <img
               src={food.image}
